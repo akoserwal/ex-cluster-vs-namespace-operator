@@ -1,0 +1,11 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cluster-scope-op
+subjects:
+- kind: ServiceAccount
+  name: cluster-scope-op
+roleRef:
+  kind: ClusterRole
+  name: cluster-scope-op
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namespace-scope-op
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: namespace-scope-op
+  template:
+    metadata:
+      labels:
+        name: namespace-scope-op
+    spec:
+      serviceAccountName: namespace-scope-op
+      containers:
+        - name: namespace-scope-op
+          # Replace this with the built image name
+          image: REPLACE_IMAGE
+          command:
+          - namespace-scope-op
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "namespace-scope-op"
