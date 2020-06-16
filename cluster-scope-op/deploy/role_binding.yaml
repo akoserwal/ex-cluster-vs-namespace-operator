@@ -5,6 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: cluster-scope-op
+  namespace: ${NAMESPACE}
 roleRef:
   kind: ClusterRole
   name: cluster-scope-op
